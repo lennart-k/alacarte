@@ -177,7 +177,7 @@ class MenuEditor(object):
             menu_xml = self.getXmlMenu(self.getPath(item.get_parent()), dom.documentElement, dom)
             if visible:
                 self.addXmlFilename(menu_xml, dom, item.get_desktop_file_id(), 'Include')
-                self.writeItem(item, NoDisplay=False)
+                self.writeItem(item, Hidden=False)
             else:
                 self.addXmlFilename(menu_xml, dom, item.get_desktop_file_id(), 'Exclude')
             self.addXmlTextElement(menu_xml, 'AppDir', util.getUserItemPath(), dom)
@@ -190,7 +190,7 @@ class MenuEditor(object):
             menu_xml = self.getXmlMenu(self.getPath(item), dom.documentElement, dom)
             for node in self.getXmlNodesByName(['Deleted', 'NotDeleted'], menu_xml):
                 node.parentNode.removeChild(node)
-            self.writeMenu(item, NoDisplay=not visible)
+            self.writeMenu(item, Hidden=not visible)
             self.addXmlTextElement(menu_xml, 'DirectoryDir', util.getUserDirectoryPath(), dom)
         self.save()
 
